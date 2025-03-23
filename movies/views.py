@@ -6,7 +6,7 @@ from app.permissions import GlobalDefaultPermission
 from reviews.models import Review
 
 from .models import Movie
-from .serializers import MovieSerializer
+from .serializers import MovieSerializer, MovieStatsSerializer
 
 
 class MovieCreateListView(generics.ListCreateAPIView):
@@ -32,12 +32,18 @@ class MovieStatsView(views.APIView):
         )
         total_reviews = Review.objects.count()
         average_stars = Review.objects.aggregate(avg_stars=Avg("stars"))["avg_stars"]
+
+        data = {
+            "total_movies": total_movies,
+            "movies_by_genre": movies_by_genre,
+            "total_reviews": total_reviews,
+            "average_stars": round(average_stars, 1) if average_stars else 0,
+        }
+
+        serializers = MovieStatsSerializer(data=data)
+        serializers.is_valid(raise_exception=True)
+
         return response.Response(
-            data={
-                "total_movies": total_movies,
-                "movies_by_genre": movies_by_genre,
-                "total_reviews": total_reviews,
-                "average_stars": round(average_stars, 1) if average_stars else 0,
-            },
+            data=serializers.validated_data,
             status=status.HTTP_200_OK,
         )
