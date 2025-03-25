@@ -9,6 +9,7 @@ from .models import Movie
 RELEASE_DATE_LIMIT = 1900
 RESUME_CHARACTERS = 500
 
+
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie

@@ -1,4 +1,5 @@
 from django.db import models
+
 from actors.models import Actor
 from genres.models import Genre
 
