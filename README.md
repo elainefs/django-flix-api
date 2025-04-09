@@ -4,6 +4,8 @@
 
 API RESTful para gerenciamento de informações sobre filmes desenvolvida usando Django e Django REST framework.
 
+Essa API é consumida por uma aplicação em [Streamlit](https://github.com/elainefs/flix-app-streamlit) para visualização dos dados.
+
 ## 💻️ Tecnologias
 
 - Python
