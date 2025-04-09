@@ -1,0 +1,32 @@
+[project]
+name = "django-flix"
+version = "0.0.1"
+description = "Rest API for movies"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+
+[tool.ruff]
+exclude = [".venv", "venv", "migrations"]
+line-length = 88
+output-format = "grouped"
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "B", "I", "PL", "S", "C90"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+exclude = [".venv", "venv", "migrations"]
+
+[tool.pylint.main]
+ignore = [".venv", "venv", "migrations"]
+disable = []
+load-plugins = ["pylint_django"]
+django-settings-module = "app.settings"
+
+[tool.pylint.format]
+max-line-length = 88
+
+[tool.bandit]
+exclude_dirs = [".venv", "venv", "migrations"]
